@@ -2937,6 +2937,9 @@ input, select, textarea {
 			color: #ffffff;
 		}
 
+		#header h1 #my-title{
+			color: white;
+		}
 		#header header p {
 			color: #ffffff;
 		}
@@ -3510,3 +3513,24 @@ input, select, textarea {
 			}
 
 	}
+
+
+
+
+
+#my-title {
+    color:red;
+}
+
+
+
+#cat {
+    color: red;
+}
+
+
+
+
+
+
+

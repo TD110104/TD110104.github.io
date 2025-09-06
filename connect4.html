@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+            body{
+                background-image: url("assets/css/images/overlay2.png"), url("assets/css/images/overlay3.svg"), linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+                background-repeat: no-repeat;
+                background-size: auto;
+                height: 100vh;
+                width: 100%;
+            }
+            button {
+                width: 50px;
+                height: 50px;
+                margin: 0;
+                padding: 20px 24px;
+                transition: background .2s linear, transform .1s linear;
+            }
+            #main {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1 id = "Winner_Message"></h1>
+        <div id="main">
+        </div>
+
+    </body>
+    <script>
+
+
+
+        let text = "";
+        for (let i = 0; i < 6; i++) {
+            text += `
+                <div>
+                    <button id="button_${i}">&nbsp;</button>
+                    <button id="button_${i+6}">&nbsp;</button>
+                    <button id="button_${i+12}">&nbsp;</button>
+                    <button id="button_${i+18}">&nbsp;</button>
+                    <button id="button_${i+24}">&nbsp;</button>
+                    <button id="button_${i+30}">&nbsp;</button>
+                    <button id="button_${i+36}">&nbsp;</button>
+
+                </div>
+            `;
+        }
+        main.innerHTML =text;
+        let player_one = true;
+
+        let diagonal = [[3, 8, 13, 18], [4, 9, 14, 19], [9, 14, 19, 24], [5, 10, 15, 20], 
+        [10, 15, 20, 25], [15, 20, 25, 30], [11, 16, 21, 26], [16, 21, 26, 31], 
+        [21, 26, 31, 36], [17, 22, 27, 32], [22, 27, 32, 37], [23, 28, 33, 38],
+        [2, 9, 16, 23], [1, 8, 15, 22], [8, 15, 22, 29], [0, 7, 14, 21,], [7, 14, 21, 28], [14, 21, 28, 35],
+        [6, 13, 20, 27], [13, 20, 27, 34], [20, 27, 34, 41], [12, 19, 26, 33], [19, 26, 33, 40], [18, 25, 32, 29]];
+
+        function make_event_handler(button) {
+        let f = () => {
+            console.log(button)
+            if (player_one) {
+                let num = button.id.slice(7);
+                let int_num = Number(num);
+                let start_num = Number(num);
+                while (int_num > start_num - 6){
+                    let new_num = "button_"+ String(int_num)
+                    let button = document.getElementById(new_num);
+                    if(button.style.backgroundColor !== ""){
+                        int_num -= 1
+                    } else {
+                        button.style.backgroundColor = "blue";
+                        break
+                    }
+                    
+                }
+                if (start_num - int_num >= 3) {
+                    let one_down = int_num + 1
+                    let two_down = int_num + 2
+                    let three_down = int_num + 3
+                    let new_button_1 = "button_"+ String(one_down)
+                    let new_button_2 = "button_"+ String(two_down)
+                    let new_button_3 = "button_"+ String(three_down)
+                    let button_1 = document.getElementById(new_button_1);
+                    let button_2 = document.getElementById(new_button_2);
+                    let button_3 = document.getElementById(new_button_3);
+                    if (button_1.style.backgroundColor == "blue" && button_2.style.backgroundColor == "blue" && button_3.style.backgroundColor == "blue"){
+                        Winner_Message.textContent = "Blue Wins!";
+                    }
+                }
+                let b = 0
+                let left_side = int_num
+                while (left_side > 5)
+                    left_side -= 6
+                while (left_side < 42) {
+                    let row = "button_"+ String(left_side)
+                    let row_button = document.getElementById(row);
+                    if (row_button.style.backgroundColor == "blue"){
+                        b += 1
+                    } else{
+                        b = 0
+                    }
+                    if (b == 4){
+                        Winner_Message.textContent = "Blue Wins!";
+                        break
+                    }
+                    left_side += 6
+                }
+
+                let d = diagonal[0];
+
+
+                diagonal.forEach((sublist) => {
+
+                    let b0 = document.getElementById(`button_${sublist[0]}`)
+                    let b1 = document.getElementById(`button_${sublist[1]}`)
+                    let b2 = document.getElementById(`button_${sublist[2]}`)
+                    let b3 = document.getElementById(`button_${sublist[3]}`)
+                    console.log(b0, b1, b2, b3);
+                    if (b0.style.backgroundColor == "blue" && b1.style.backgroundColor == "blue" && b2.style.backgroundColor == "blue" && b3.style.backgroundColor == "blue") {
+                        Winner_Message.textContent = "Blue Wins!";
+                    }
+                })
+
+
+                player_one = !player_one;
+                
+
+            } else {
+                let num = button.id.slice(7);
+                let int_num = Number(num);
+                let start_num = Number(num);
+
+                while (int_num > start_num - 6){
+                    let new_num = "button_"+ String(int_num)
+                    let button = document.getElementById(new_num);
+                    if(button.style.backgroundColor !== ""){
+                        int_num -= 1
+                    } else {
+                        button.style.backgroundColor = "red";
+                        break
+                    }
+                }
+                if (start_num - int_num >= 3) {
+                        let one_down = int_num + 1
+                        let two_down = int_num + 2
+                        let three_down = int_num + 3
+                        let new_button_1 = "button_"+ String(one_down)
+                        let new_button_2 = "button_"+ String(two_down)
+                        let new_button_3 = "button_"+ String(three_down)
+                        let button_1 = document.getElementById(new_button_1);
+                        let button_2 = document.getElementById(new_button_2);
+                        let button_3 = document.getElementById(new_button_3);
+                        if (button_1.style.backgroundColor == "red" && button_2.style.backgroundColor == "red" && button_3.style.backgroundColor == "red"){
+                            Winner_Message.textContent = "Red Wins!"
+                        }
+                }
+                let r = 0
+                let left_side = int_num
+                while (left_side > 5)
+                    left_side -= 6
+                while (left_side < 42) {
+                    let row = "button_"+ String(left_side)
+                    let row_button = document.getElementById(row);
+                    if (row_button.style.backgroundColor == "red"){
+                        r += 1
+                    } else{
+                        r = 0
+                    }
+                    if (r == 4){
+                        Winner_Message.textContent = "Red Wins!"
+                        break
+                    }
+                    left_side += 6
+                }
+                let d = diagonal[0];
+
+
+                diagonal.forEach((sublist) => {
+
+                    let b0 = document.getElementById(`button_${sublist[0]}`)
+                    let b1 = document.getElementById(`button_${sublist[1]}`)
+                    let b2 = document.getElementById(`button_${sublist[2]}`)
+                    let b3 = document.getElementById(`button_${sublist[3]}`)
+                    console.log(b0, b1, b2, b3);
+                    if (b0.style.backgroundColor == "red" && b1.style.backgroundColor == "red" && b2.style.backgroundColor == "red" && b3.style.backgroundColor == "red") {
+                        Winner_Message.textContent = "Red Wins!"
+                    }
+                })
+                
+                
+                player_one = !player_one;
+            }
+            
+
+
+        };
+
+        button.addEventListener("click", f);
+    } 
+
+
+        function check_winner(button, idx) {
+            let col_1 = [button_0, button_1, button_2, button_3, button_4, button_5]
+            let col_2 = [button_6, button_7, button_8, button_9, button_10, button_11]
+            let col_3 = [button_12, button_13, button_14, button_15, button_16, button_17]
+            let col_4 = [button_18, button_19, button_20, button_21, button_22, button_23]
+            let col_5 = [button_24, button_25, button_26, button_27, button_28, button_29]
+            let col_6 = [button_30, button_31, button_32, button_33, button_34, button_35]
+            let col_7 = [button_36, button_37, button_38, button_39, button_40, button_41]
+        }
+
+
+
+
+
+        for (let i = 5; i < 42; i+=6) {
+            let button = document.getElementById(`button_${i}`);
+            if (button === null) {
+                console.log(i);
+            }
+            make_event_handler(button);
+
+
+        }
+
+
+
+    </script>
+
+</html>

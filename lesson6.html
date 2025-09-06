@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+    </head>
+    <style>
+        span {
+            padding: 50px;
+            background-color : blue;
+        }
+
+        span:hover {
+            background-color: red;
+        }
+
+        span:active {
+            background-color : green;
+        }
+        div {
+            margin: 110px;
+        }
+
+        #moved {
+            position : absolute;
+            left: -100px;
+            top: 200px;
+        }
+    </style>
+    <body>
+        <div id = "moved">
+            <span>zebra</span>
+            <span>mango</span>
+            <span>pumpkin</span>
+        </div>
+        <div>
+            <span>cat</span>
+            <span>dog</span>
+            <span>bird</span>
+        </div>
+    </body>
+    <script>
+        function print_number(button) {
+            let f = function() {
+                button.style.backgroundColor = "blue";
+            };
+            return f;
+        }
+
+        function repeat(n, action) {
+            for (let i = 0; i< n; i++) {
+                action(i);
+            }
+        }
+        function double_it(n) {
+            console.log(n*2);
+        }
+        repeat(10, console.log);
+        repeat(10, double_it);
+        repeat(10, n=> {
+            console.log(n*3);
+        });
+
+        let numbers = [6, 10, 14, 20];
+        let results = [];
+        numbers.forEach(n => results.push(n / 2));
+        console.log(results);
+
+        function filter(array, test) {
+            let passed = [];
+            for (let element of array) {
+                if (test(element)) {
+                    passed.push(element);
+                }
+            }
+            return passed;
+        }
+        let all_numbers = [6, 10, 5, 3, 8];
+        console.log(filter(all_numbers, n => {
+            return n % 2 == 0;
+        }));
+        console.log(filter(all_numbers, n => {
+            return n % 2 == 1;
+        }));
+
+
+    </script>
+</html>

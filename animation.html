@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <style>
+
+        @keyframes rotate {
+            0% {
+                transform: translate(0, 0) roatate(0deg);
+            }
+            25% {
+                transform: translate(100px, 0) rotate(90deg);
+            }
+            50% {
+                transform: translate(100px, 100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(0px, 100px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0px, 0px) rotate(360deg);
+            }
+
+
+        }
+
+
+        .button {
+            border-radius: 7px;
+            padding: 20px 24px;
+            background: tomato;
+            transition: background .3s linear, transform .2s linear;
+
+        }
+
+        .button:hover {
+            background: white;
+            transition: background .3s linear, transform .2s linear;
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .button:active {
+            background: blue;
+        }
+        .forever{
+            background-color: blue;
+            width: 32px;
+            height: 32px;
+            border-radius: 7px;
+            padding: 20px 24px;
+            animation: rotate 2s ease infinite;
+        }
+    </style>
+    <body>
+        <div class="forever">Hello</div>
+        <div>
+            <button class="button">&nbsp</button>
+            <button class="button">&nbsp</button>
+            <button class="button">&nbsp</button>
+            <button class="button">&nbsp</button>
+        </div>
+        <div>
+            <button class="button">&nbsp</button>
+            <button class="button">&nbsp</button>
+            <button class="button">&nbsp</button>
+            <button class="button">&nbsp</button>
+        </div>
+        <div>
+            <button class="button">&nbsp</button>
+            <button class="button">&nbsp</button>
+            <button class="button">&nbsp</button>
+            <button class="button">&nbsp</button>
+        </div>
+        
+    </body>
+</html>

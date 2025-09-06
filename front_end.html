@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>This is a test</title>
+    </head>
+    <style>
+        h1 {
+            color: blue;
+            background-color : green;
+        }
+        p { 
+            color: orange;
+            background-color: red;
+        }
+    </style>
+    <body>
+        <h1 id = "my_header">This text</h1>
+        <h6>This text</h6>
+        <p> Hi</p>
+    </body>
+    <script>
+        /*
+        let answer = Number(prompt("Enter a number:"));
+        let h1_tag = document.getElementById("my_header");
+        if (answer ==0) {
+            h1_tag. innerHTML = "I like cats";
+        } else {
+            h1_tag.innerHTML = "I really love cats";
+        }
+        */
+        /*
+        console.log("Hello world");
+        let x = 5;
+        console.log(x);
+        x = 10;
+        console.log(x+x);
+
+        //let y = Number(prompt("This is a prompt!"));
+        let y = 4.4;
+        console.log(y*y);
+        console.log(y + 5);
+
+
+        if (y<10) {
+            console.log("A");
+        } else{
+            console.log("B");
+        }
+    
+        console.log(Math.floor(Math.random() * 10));
+
+        let z = 10;
+        while (z > 0) {
+            z -= 1;
+           console.log(z);
+        }
+
+        alert("Oh No!");
+        */
+        let tgu = (0);
+        let tg = (0);
+        let q = prompt("Would you like to play a guessing game?");
+        while (q == "Yes") {
+             console.log("Hi. This is a number guessing game. Choose a number between 0-100");
+            let x = Math.floor(Math.random() * 100);
+            let y  = Number(prompt("Type in your guess!"));
+            while (y != x) {
+                if (y > x) {
+                    alert("Lower");
+                }
+                else if (y < x) {
+                alert("Higher");
+                }
+                tgu += 1;
+                h1_tag.innerHTML = tgu
+                y = Number(prompt("Type in your guess!"));
+            }
+            alert("You got it!");
+            tg += 1;
+            q = prompt("Would you like to play again?");
+        
+        for (let i = 0; i < 10; i += 1) {
+            console.log(i)
+        }
+
+
+
+
+
+    </script>
+</html>
+

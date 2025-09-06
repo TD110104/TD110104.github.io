@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html>
+    <style>
+        #November{
+            display: block;
+        }
+        #December {
+            display: none;
+        }
+        td {
+            text-align: center;
+        }
+        tr {
+            border: 1px solid gray;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin : auto;
+        }
+        div{
+            border: 1px dotted blue;
+            width: 50%;
+            margin:auto;
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+        .grey {
+            color: grey;
+        }
+        .red {
+            color: red;
+        }
+    </style>
+    <body>
+        <div id="November">
+            <table>
+                <caption>November</caption>
+                <tr>
+                    <th>Mo</th>
+                    <th>Tu</th>
+                    <th>We</th>
+                    <th>Th</th>
+                    <th>Fr</th>
+                    <th>Sa</th>
+                    <th>Su</th>
+                </tr>
+                <tr>
+                    <th class="grey">31</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th class="red">5</th>
+                    <th class="red">6</th>
+                </tr>
+                <tr>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                    <th>11</th>
+                    <th class="red">12</th>
+                    <th class="red">13</th>
+                </tr>
+                <tr>
+                    <th>14</th>
+                    <th>15</th>
+                    <th>16</th>
+                    <th>17</th>
+                    <th>18</th>
+                    <th class="red">19</th>
+                    <th class="red">20</th>
+                </tr>
+                <tr>
+                    <th>21</th>
+                    <th>22</th>
+                    <th>23</th>
+                    <th>24</th>
+                    <th>25</th>
+                    <th class="red">26</th>
+                    <th class="red">27</th>
+                </tr>
+                <tr>
+                    <th>28</th>
+                    <th>29</th>
+                    <th>30</th>
+                    <th class="grey">1</th>
+                    <th class="grey">2</th>
+                    <th class="grey">3</th>
+                    <th class="grey">4</th>
+                </tr>
+                <button id ="button1">Next</button>
+            </table>
+        </div>
+        <div id = "December">
+            <table>
+                <caption>December</caption>
+                <tr>
+                    <th>Mo</th>
+                    <th>Tu</th>
+                    <th>We</th>
+                    <th>Th</th>
+                    <th>Fr</th>
+                    <th>Sa</th>
+                    <th>Su</th>
+                </tr>
+                <tr>
+                    <th class="grey">28</th>
+                    <th class="grey">29</th>
+                    <th class="grey">30</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th class="red">3</th>
+                    <th class="red">4</th>
+                </tr>
+                <tr>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th class="red">10</th>
+                    <th class="red">11</th>
+                </tr>
+                <tr>
+                    <th>12</th>
+                    <th>13</th>
+                    <th>14</th>
+                    <th>15</th>
+                    <th>16</th>
+                    <th class="red">17</th>
+                    <th class="red">18</th>
+                </tr>
+                <tr>
+                    <th>19</th>
+                    <th>20</th>
+                    <th>21</th>
+                    <th>22</th>
+                    <th>23</th>
+                    <th class="red">23</th>
+                    <th class="red">24</th>
+                </tr>
+                <tr>
+                    <th>25</th>
+                    <th>26</th>
+                    <th>27</th>
+                    <th>28</th>
+                    <th>29</th>
+                    <th class="red">30</th>
+                    <th class="red">31</th>
+                </tr>
+            <button id = "button2">Back</button>
+            </table>
+        </div>
+    </body>
+    <script>
+        function switch_month_forward(){
+            let November = document.getElementById("November");
+            if (November.style.display == 'none)') {
+                November.style.display = 'block';
+                December.style.display = 'none';
+            } else {
+                November.style.display = 'none';
+                December.style.display = 'block';
+            }
+        }
+        function switch_month_back(){
+            let December = document.getElementById("December");
+            if (December.style.display == 'none)') {
+                December.style.display = 'block';
+                November.style.display = 'none';
+            } else {
+                December.style.display = 'none';
+                November.style.display = 'block';
+            }
+        }
+        let button1 = document.getElementById("button1");
+        let button2 = document.getElementById("button2");
+        button1.addEventListener("click", switch_month_forward);
+        button2.addEventListener("click", switch_month_back);
+    </script>
+</html>

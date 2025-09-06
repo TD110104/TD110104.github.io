@@ -1,0 +1,66 @@
+<!DOCTYPE hmtl>
+<html>
+    <style>
+        h1 {
+            font-size: 36px;
+            color: blue;
+            background-color: red;
+            border: 4px solid green;
+            margin: 50px; 
+            padding: 20px;
+            padding-bottom: 100px;
+            text-align: center;
+        }
+    </style>
+    <body>
+        <h1 id="my_header">This is a sentence</h1>
+        <button id="button1">Click Here!</button>
+        <button id="button2">Click Here!</button>
+        <button>Click Here!</button>
+        <button>Click Here!</button>
+        <button>Click Here!</button>
+        <input type="text" value="0"></input>
+    </body>
+<script>
+        let answer = 55;
+
+        function reroll_number() {
+            answer = 56;
+        }
+        let button2 = document.getElementById("button2");
+        button2.addEventListener("click", reroll_number);
+
+
+        function clicked_button() {
+            console.log("Hello World");
+            let header = document.getElementById("my_header"); 
+            if (header.innerHTML == "YOU CLICKED ON BUTTON!") {
+                header.innerHTML = "!!!!!!!!!!!!!!!!!!";
+            } else {
+                header.innerHTML = "YOU CLICKED ON BUTTON!";
+                let my_input = document.querySelector("input");
+                let n = Number(my_input.value);
+                header.innerHTML = String(n * 1000);
+            }
+            let my_input = document.querySelector("input");
+            let n = Number(my_input.value);
+            console.log(n * 5);
+        }
+
+        let button = document.querySelector("button");
+button.addEventListener("click", clicked_button); 
+        /*
+        def add(x, y):
+            return x + y
+        function add(x, y) {
+            return x + y; 
+        } 
+
+        function addmore(a, b, c) {
+            return add(add(a, b), c);
+        }
+        console.log(addmore(40, 2, 10));
+        console.log(40 + 2 + 10)
+        */
+    </script>
+</html>

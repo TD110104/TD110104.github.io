@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            button {
+                width: 50px;
+                height: 50px;
+                margin: 0;
+            }
+            #main {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main"></div>
+    </body>
+    <script>
+        let text = "";
+        for (let i = 0; i < 6; i++) {
+            text += `
+                <div>
+                    <button id="button_${i}">&nbsp;</button>
+                    <button id="button_${i+6}">&nbsp;</button>
+                    <button id="button_${i+12}">&nbsp;</button>
+                    <button id="button_${i+18}">&nbsp;</button>
+                    <button id="button_${i+24}">&nbsp;</button>
+                    <button id="button_${i+30}">&nbsp;</button>
+                    <button id="button_${i+36}">&nbsp;</button>
+                </div>
+            `;
+        }
+        main.innerHTML = text;
+        let player_one = true;
+
+        row_buttons = []
+
+        function make_event_handler(button, idx) {
+            let f = () => {
+                let i = 0;
+                let inarow = 0;
+                if (player_one) {
+                    color_to_check = 'blue';
+                    while (button.style.backgroundColor !== "") {
+                        let num = button.id.slice(7);
+                        let int_num = Number(num);
+                        let new_num = "button_" + String(int_num - 1)
+                        button = document.getElementById(new_num);
+                        console.log(idx);
+                    }
+                    button.style.backgroundColor = "blue";
+                    player_one = !player_one;
+                    checkWinner(); // <-- Winner check added here
+
+                } else {
+                    while (button.style.backgroundColor !== "") {
+                        let num = button.id.slice(7);
+                        let int_num = Number(num);
+                        let new_num = "button_" + String(int_num - 1)
+                        button = document.getElementById(new_num);
+                    }
+                    button.style.backgroundColor = "red";
+                    player_one = !player_one;
+                    checkWinner(); // <-- Winner check added here
+                }
+            };
+
+            button.addEventListener("click", f);
+        }
+
+        let buttons = [];
+        for (let i = 0; i < 42; i++) {
+            let button = document.getElementById(`button_${i}`);
+            if (button === null) {
+                console.log(i);
+            }
+            buttons.push(button);
+            make_event_handler(button, i);
+        }
+
+        console.log(buttons);
+
+        // === ✅ Winner Detection Logic ===
+        function checkWinner() {
+            const rows = 6;
+            const cols = 7;
+            const directions = [
+                { r: 0, c: 1 },  // Horizontal
+                { r: 1, c: 0 },  // Vertical
+                { r: 1, c: 1 },  // Diagonal down-right
+                { r: 1, c: -1 }  // Diagonal down-left
+            ];
+
+            function getColor(row, col) {
+                if (row < 0 || row >= rows || col < 0 || col >= cols) return null;
+                const idx = row * cols + col;
+                const btn = document.getElementById(`button_${idx}`);
+                return btn.style.backgroundColor || null;
+            }
+
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    let startColor = getColor(row, col);
+                    if (!startColor) continue;
+
+                    for (let d of directions) {
+                        let count = 1;
+                        let winningButtons = [`button_${row * cols + col}`];
+
+                        for (let k = 1; k < 4; k++) {
+                            let r = row + d.r * k;
+                            let c = col + d.c * k;
+                            let color = getColor(r, c);
+                            if (color === startColor) {
+                                count++;
+                                winningButtons.push(`button_${r * cols + c}`);
+                            } else break;
+                        }
+
+                        if (count === 4) {
+                            for (let id of winningButtons) {
+                                document.getElementById(id).style.border = "3px solid gold";
+                            }
+                            setTimeout(() => {
+                                alert(`${startColor.toUpperCase()} wins!`);
+                            }, 10);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+    </script>
+</html>

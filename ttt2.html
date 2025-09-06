@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+</style>
+<body>
+    <div class="container">
+        <button id="b0">0</button>
+        <button id="b1">1</button>
+        <button id="b2">2</button>
+    </div>
+    <div class="container">
+        <button id="b3">3</button>
+        <button id="b4">4</button>
+        <button id="b5">5</button>
+    </div>
+    <div class="container">
+        <button id="b6">6</button>
+        <button id="b7">7</button>
+        <button id="b8">8</button>
+    </div>
+</body>
+<script>
+    let player_one = true;
+
+    function found_winner(buttons, color) {
+        const combinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], 
+                              [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                              [0, 4, 8], [2, 4, 6]];
+
+        let winner = false;
+        combinations.forEach((c) => {
+            if (buttons[c[0]].style.backgroundColor === color &&
+                buttons[c[1]].style.backgroundColor === color &&
+                buttons[c[2]].style.backgroundColor === color) {
+                winner = true;
+                return;
+            }
+        });
+
+        return winner;
+    }
+
+
+    function make_event_handler(button, idx, buttons) {
+        let f = () => {
+            if (player_one) {
+                button.style.backgroundColor = "blue";
+                console.log(found_winner(buttons, "blue"));
+            } else {
+                button.style.backgroundColor = "red";
+                console.log(found_winner(buttons, "red"));
+            }
+            player_one = !player_one;
+
+            button.removeEventListener("click", f);
+        };
+
+        button.addEventListener("click", f);
+    } 
+
+    let buttons = [b0, b1, b2, b3, b4, b5, b6, b7, b8]
+    buttons.forEach((button, idx) => {
+        make_event_handler(button, idx, buttons);
+    });
+</script>
+
+</html>

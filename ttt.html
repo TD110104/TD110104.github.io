@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html>
+    <style>
+        body {
+            background-image: url("assets/css/images/overlay2.png"), url("assets/css/images/overlay3.svg"), linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+            background-repeat: no-repeat;
+            background-size: auto;
+            height: 100vh;
+            width: 100%;
+        }
+        .button{
+            width:100px;
+            height: 100px;
+        }
+        .center {
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+  }
+    .grid {
+        margin: auto;
+        text-align: center;
+    }
+
+    </style>
+    <body>
+    <div class = "grid">
+    <div>
+        <button class = "center button" id = "button1">1</button>
+        <button class = "center button" id = "button2">2</button>
+        <button class = "center button" id = "button3">3</button>
+    </div>
+    <div>
+        <button class = "center button" id = "button4">4</button>
+        <button class = "center button" id = "button5">5</button>
+        <button class = "center button" id = "button6">6</button>
+    </div>
+    <div>
+        <button class = "center button" id = "button7">7</button>
+        <button class = "center button" id = "button8">8</button>
+        <button class = "center button" id = "button9">9</button>
+    </div>
+        <button class = "button grid" id = "win_button">Winner</button>
+    </div>
+
+
+    </body>
+    <script>
+        let b = [button1, button2, button3, button4, button5, button6, button7, button8, button9];
+        let run = true;
+        let player_one = "red"
+        let c = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+        function draw(){
+            let zeros = 0;
+            c.forEach(n => {
+                if (n == 0) {
+                    zeros += 1;
+                } 
+            })
+            if (zeros == 0) {
+                    return true;
+                }
+            return false;
+        }
+
+        function winner(){
+            if (c[0] == "1" && c[1] == "1" && c[2] == "1"){
+                win_button.style.backgroundColor = "red";
+                console.log("Red");
+            } else if(c[0] == "2" && c[1] == "2" && c[2] == "2"){
+                win_button.style.backgroundColor = "blue";
+                console.log("Blue");
+            } else if(c[3] == "1" && c[4] == "1" && c[5] == "1"){
+                win_button.style.backgroundColor = "red";
+                console.log("Red");
+            } else if(c[3] == "2" && c[4] == "2" && c[5] == "2"){
+                win_button.style.backgroundColor = "blue";
+                console.log("Blue");
+            } else if(c[6] == "1" && c[7] == "1" && c[8] == "1"){
+                win_button.style.backgroundColor = "red";
+                console.log("Red");
+            } else if(c[6] == "2" && c[7] == "2" && c[8] == "2"){
+                win_button.style.backgroundColor = "blue";
+                console.log("Blue");
+            } else if(c[0] == "1" && c[3] == "1" && c[6] == "1"){
+                win_button.style.backgroundColor = "red";
+                console.log("Red");
+            } else if(c[0] == "2" && c[3] == "2" && c[6] == "2"){
+                win_button.style.backgroundColor = "blue";
+                console.log("Blue");
+            } else if(c[1] == "1" && c[4] == "1" && c[7] == "1"){
+                win_button.style.backgroundColor = "red";
+                console.log("Red");
+            } else if(c[1] == "2" && c[4] == "2" && c[7] == "2"){
+                win_button.style.backgroundColor = "blue";
+                console.log("Blue");
+            } else if(c[2] == "1" && c[5] == "1" && c[8] == "1"){
+                win_button.style.backgroundColor = "red";
+                console.log("Red");
+            } else if(c[2] == "2" && c[5] == "2" && c[8] == "2"){
+                win_button.style.backgroundColor = "blue";
+                console.log("Blue");
+            } else if(c[0] == "1" && c[4] == "1" && c[8] == "1"){
+                win_button.style.backgroundColor = "red";
+                console.log("Red");
+            } else if(c[0] == "2" && c[4] == "2" && c[8] == "2"){
+                win_button.style.backgroundColor = "blue";
+                console.log("Blue");
+            } else if(c[2] == "1" && c[4] == "1" && c[6] == "1"){
+                win_button.style.backgroundColor = "red";
+                console.log("Red");
+            } else if(c[2] == "2" && c[4] == "2" && c[6] == "2"){
+                win_button.style.backgroundColor = "blue";
+                console.log("Blue");
+            } else if(draw()){
+                win_button.style.backgroundColor = "yellow";
+            }
+        }
+
+
+        function color1(){
+            if(player_one){
+                button1.style.backgroundColor = "red"
+                c[0] = "1"
+            } else{
+                button1.style.backgroundColor = "blue"
+                c[0] = "2"
+            }
+            player_one = !player_one
+            button1.removeEventListener("click", color1)
+            winner() ; 
+            draw() ;
+        }
+        function color2(){
+            if(player_one){
+                button2.style.backgroundColor = "red"
+                c[1] = "1"
+            } else{
+                button2.style.backgroundColor = "blue"
+                c[1] = "2"
+            }
+            player_one = !player_one
+            button2.removeEventListener("click", color2)
+            winner() ; 
+            draw() ;
+        }
+        function color3(){
+            if(player_one){
+                button3.style.backgroundColor = "red"
+                c[2] = "1"
+            } else{
+                button3.style.backgroundColor = "blue"
+                c[2] = "2"
+            }
+            player_one = !player_one
+            button3.removeEventListener("click", color3)
+            winner() ; 
+            draw() ;
+        }
+        function color4(){
+            if(player_one){
+                button4.style.backgroundColor = "red"
+                c[3] = "1"
+            } else{
+                button4.style.backgroundColor = "blue"
+                c[3] = "2"
+            }
+            player_one = !player_one
+            button4.removeEventListener("click", color4)
+            winner() ; 
+            draw() ;
+        }
+        function color5(){
+            if(player_one){
+                button5.style.backgroundColor = "red"
+                c[4] = "1"
+            } else{
+                button5.style.backgroundColor = "blue"
+                c[4] = "2"
+            }
+            player_one = !player_one
+            button5.removeEventListener("click", color5)
+            winner() ; 
+            draw() ;
+        }
+        function color6(){
+            if(player_one){
+                button6.style.backgroundColor = "red"
+                c[5] = "1"
+            } else{
+                button6.style.backgroundColor = "blue"
+                c[5] = "2"
+            }
+            player_one = !player_one
+            button6.removeEventListener("click", color6)
+            winner() ; 
+            draw() ;
+        }
+        function color7(){
+            if(player_one){
+                button7.style.backgroundColor = "red"
+                c[6] = "1"
+            } else{
+                button7.style.backgroundColor = "blue"
+                c[6] = "2"
+            }
+            player_one = !player_one
+            button7.removeEventListener("click", color7)
+            winner() ; 
+            draw() ;
+        }
+        function color8(){
+            if(player_one){
+                button8.style.backgroundColor = "red"
+                c[7] = "1"
+            } else{
+                button8.style.backgroundColor = "blue"
+                c[7] = "2"
+            }
+            player_one = !player_one
+            button8.removeEventListener("click", color8)
+            winner() ; 
+            draw() ;
+        }
+        function color9(){
+            if(player_one){
+                button9.style.backgroundColor = "red"
+                c[8] = "1"
+            } else{
+                button9.style.backgroundColor = "blue"
+                c[8] = "2"
+            }
+            player_one = !player_one
+            button9.removeEventListener("click", color9)
+            winner() ; 
+            draw() ;
+        }
+        button1.addEventListener("click", color1)
+        button2.addEventListener("click", color2)
+        button3.addEventListener("click", color3)
+        button4.addEventListener("click", color4)
+        button5.addEventListener("click", color5)
+        button6.addEventListener("click", color6)
+        button7.addEventListener("click", color7)
+        button8.addEventListener("click", color8)
+        button9.addEventListener("click", color9)
+        
+
+
+    </script>
+</html>
